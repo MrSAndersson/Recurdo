@@ -1,10 +1,11 @@
 package stofian.recurdo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 class ItemsSingleton {
     private static ItemsSingleton itemsInstance;
-    private List<item> items;
+    private List<Item> items = new ArrayList<>();
 
 
     static synchronized ItemsSingleton getInstance() {
@@ -16,29 +17,42 @@ class ItemsSingleton {
     }
 
     public void addItem(String name, List<Integer> weekdays) {
-        items.add(new item(name, weekdays));
+        this.items.add(new Item(name, weekdays));
     }
 
-    private class item {
-        private String name;
-        private List<Integer> weekdays;
+    public Item getItem(String name) {
 
-        item(String name, List<Integer> weekdays) {
-            this.name = name;
-            this.weekdays = weekdays;
+        for (int x=0 ; x<items.size() ; x++) {
+            if ( items.get(x).getName().equals(name) ) {
+                return items.get(x);
+            }
         }
-
-        String getName() {
-            return name;
-        }
-
-        boolean matchDay(Integer day) {
-            return weekdays.contains(day);
-        }
-
-        void setWeekdays(List<Integer> weekdays) {
-            this.weekdays = weekdays;
-        }
-
+        return null;
     }
+
+
+}
+
+
+class Item {
+    private String name;
+    private List<Integer> weekdays;
+
+    Item(String name, List<Integer> weekdays) {
+        this.name = name;
+        this.weekdays = weekdays;
+    }
+
+    String getName() {
+        return name;
+    }
+
+    boolean matchDay(Integer day) {
+        return weekdays.contains(day);
+    }
+
+    void setWeekdays(List<Integer> weekdays) {
+        this.weekdays = weekdays;
+    }
+
 }
