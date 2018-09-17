@@ -1,5 +1,7 @@
 package stofian.recurdo;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,23 +22,26 @@ class ItemsSingleton {
         this.items.add(new Item(name, weekdays));
     }
 
-    public Item getItem(String name) {
+    private Item findItem(String name) throws MissingItemException {
 
         for (int x=0 ; x<items.size() ; x++) {
             if ( items.get(x).getName().equals(name) ) {
                 return items.get(x);
             }
         }
-        return null;
+        throw new MissingItemException(name);
     }
 
-
+    public Integer getInterval(String name) throws MissingItemException {
+            return findItem(name).getInterval();
+    }
 }
 
 
 class Item {
     private String name;
     private List<Integer> weekdays;
+    private Integer interval;
 
     Item(String name, List<Integer> weekdays) {
         this.name = name;
@@ -47,6 +52,10 @@ class Item {
         return name;
     }
 
+    Integer getInterval() {
+        return interval;
+    }
+
     boolean matchDay(Integer day) {
         return weekdays.contains(day);
     }
@@ -55,4 +64,11 @@ class Item {
         this.weekdays = weekdays;
     }
 
+}
+
+
+class MissingItemException extends Exception {
+    MissingItemException(String message) {
+        super(message);
+    }
 }

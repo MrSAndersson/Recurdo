@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import stofian.recurdo.dummy.DummyContent;
 
 public class MainActivity extends AppCompatActivity implements ItemFragment.OnListFragmentInteractionListener {
+    ItemsSingleton items = ItemsSingleton.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +25,7 @@ public class MainActivity extends AppCompatActivity implements ItemFragment.OnLi
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, R.string.item_added, Snackbar.LENGTH_SHORT)
                         .setAction("Action", null).show();
             }
         });
