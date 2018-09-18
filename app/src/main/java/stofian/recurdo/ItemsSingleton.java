@@ -4,6 +4,7 @@ import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 class ItemsSingleton {
     private static ItemsSingleton itemsInstance;
@@ -22,18 +23,14 @@ class ItemsSingleton {
         this.items.add(new Item(name, weekdays));
     }
 
-    private Item findItem(String name) throws MissingItemException {
+    private Optional<Item> findItem(String name) {
 
         for (int x=0 ; x<items.size() ; x++) {
             if ( items.get(x).getName().equals(name) ) {
-                return items.get(x);
+                return Optional.of(items.get(x));
             }
         }
-        throw new MissingItemException(name);
-    }
-
-    public Integer getInterval(String name) throws MissingItemException {
-            return findItem(name).getInterval();
+        return Optional.empty();
     }
 }
 
@@ -67,8 +64,3 @@ class Item {
 }
 
 
-class MissingItemException extends Exception {
-    MissingItemException(String message) {
-        super(message);
-    }
-}
