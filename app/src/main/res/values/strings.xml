@@ -7,4 +7,32 @@
     <string name="title_activity_new_item">New Task</string>
     <string name="new_item_name">Name</string>
     <string name="new_item_recur">Recur every </string>
+    <string name="new_item_week_recur_on">On</string>
+    <string name="new_item_create">Create</string>
+    <string name="new_item_month_text1">Recur on day </string>
+    <string name="new_item_month_text2"> of the month </string>
+
+    <string-array name="interval_scale_singular">
+        <item>day</item>
+        <item>week</item>
+        <item>month</item>
+    </string-array>
+
+    <string-array name="interval_scale_plural">
+        <item>days</item>
+        <item>weeks</item>
+        <item>months</item>
+    </string-array>
+
+    <!-- General -->
+    <string name="monday">Monday</string>
+    <string name="tuesday">Tuesday</string>
+    <string name="wednesday">Wednesday</string>
+    <string name="thursday">Thursday</string>
+    <string name="friday">Friday</string>
+    <string name="saturday">Saturday</string>
+    <string name="sunday">Sunday</string>
+
+
+
 </resources>

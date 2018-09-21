@@ -1,0 +1,159 @@
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginStart="10dp"
+    android:layout_marginEnd="10dp"
+    android:layout_marginBottom="15dp">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context=".NewItemActivity">
+
+        <EditText
+            android:id="@+id/new_item_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textAutoComplete"
+            android:hint="@string/new_item_name"
+            android:textSize="25sp" />
+
+        <LinearLayout
+            android:id="@+id/new_item_recur_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/new_item_name"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:labelFor="@id/new_item_interval"
+                android:textSize="20sp"
+                android:text="@string/new_item_recur"
+                android:layout_gravity="center"/>
+
+            <EditText
+                android:id="@+id/new_item_interval"
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:inputType="number"
+                android:layout_gravity="center"/>
+
+            <Spinner
+                android:id="@+id/new_item_interval_scale"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"/>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/new_item_week_selector_group"
+            app:layout_constraintTop_toBottomOf="@+id/new_item_recur_group"
+            android:orientation="vertical"
+            android:layout_marginTop="15dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/new_item_week_recur_on"
+                android:textSize="20sp" />
+
+
+            <RadioButton
+                android:id="@+id/new_item_monday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/monday"/>
+
+            <RadioButton
+                android:id="@+id/new_item_tuesday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tuesday"/>
+
+            <RadioButton
+                android:id="@+id/new_item_wednesday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/wednesday"/>
+
+            <RadioButton
+                android:id="@+id/new_item_thursday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/thursday"/>
+
+            <RadioButton
+                android:id="@+id/new_item_friday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/friday"/>
+
+            <RadioButton
+                android:id="@+id/new_item_saturday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/saturday"/>
+            <RadioButton
+                android:id="@+id/new_item_sunday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/sunday"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/new_item_month_selector_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/new_item_recur_group"
+            android:layout_marginTop="20dp"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:labelFor="@id/new_item_day_of_month"
+                android:text="@string/new_item_month_text1"
+                android:textSize="20sp"/>
+
+            <EditText
+                android:id="@+id/new_item_day_of_month"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="number"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/new_item_month_text2"
+                android:textSize="20sp"/>
+
+        </LinearLayout>
+
+    </android.support.constraint.ConstraintLayout>
+
+    <Button
+        android:id="@+id/new_item_create_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/new_item_create"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="5dp"/>
+
+</RelativeLayout>
