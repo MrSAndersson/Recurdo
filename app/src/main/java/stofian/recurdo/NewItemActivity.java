@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,6 +18,7 @@ import android.widget.Spinner;
 
 public class NewItemActivity extends AppCompatActivity {
     EditText nameEditText;
+    Spinner categorySpinner;
     EditText intervalEditText;
     Spinner scaleSpinner;
     LinearLayout weekViewGroup;
@@ -43,6 +46,7 @@ public class NewItemActivity extends AppCompatActivity {
         }
 
         nameEditText = findViewById(R.id.new_item_name);
+        categorySpinner = findViewById(R.id.new_item_category);
         intervalEditText= findViewById(R.id.new_item_interval);
         scaleSpinner = findViewById(R.id.new_item_interval_scale);
         weekViewGroup = findViewById(R.id.new_item_week_view_group);
@@ -59,23 +63,30 @@ public class NewItemActivity extends AppCompatActivity {
 
 
         intervalEditText.setText("1");
-        TextWatcher intervalTextWatcher = new intervalChangeWatcher(this);
-        intervalEditText.addTextChangedListener(intervalTextWatcher);
+        intervalEditText.addTextChangedListener(new IntervalChangeWatcher(this));
+        weekViewGroup.setVisibility(View.GONE);
+        monthViewGroup.setVisibility(View.GONE);
+        dayOfMonthButton.setText("1");
+
+        ArrayAdapter<CharSequence> categorySpinnerAdapter = ArrayAdapter.createFromResource(this,
+                R.array.new_item_categories, android.R.layout.simple_spinner_item);
+        categorySpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        categorySpinner.setAdapter(categorySpinnerAdapter);
 
         ArrayAdapter<CharSequence> scaleSpinnerAdapter = ArrayAdapter.createFromResource(this,
                 R.array.interval_scale_singular, android.R.layout.simple_spinner_item);
         scaleSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         scaleSpinner.setAdapter(scaleSpinnerAdapter);
 
-
+        scaleSpinner.setOnItemSelectedListener(new OnScaleSwitchListener());
 
 
     }
 
-    private class intervalChangeWatcher implements TextWatcher {
+    private class IntervalChangeWatcher implements TextWatcher {
         Context context;
 
-        intervalChangeWatcher(Context context) {
+        IntervalChangeWatcher(Context context) {
             this.context = context;
         }
 
@@ -86,8 +97,6 @@ public class NewItemActivity extends AppCompatActivity {
 
         @Override
         public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            //TODO Handle 0 days entered with a warning and reset
 
             if (i2 != 0) {
 
@@ -110,6 +119,39 @@ public class NewItemActivity extends AppCompatActivity {
 
         @Override
         public void afterTextChanged(Editable editable) {
+
+        }
+    }
+
+    private class OnScaleSwitchListener implements AdapterView.OnItemSelectedListener {
+
+
+        @Override
+        public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+            switch (i) {
+                case 0:
+                    weekViewGroup.setVisibility(View.GONE);
+                    monthViewGroup.setVisibility(View.GONE);
+                    break;
+                case 1:
+                    weekViewGroup.setVisibility(View.VISIBLE);
+                    monthViewGroup.setVisibility(View.GONE);
+                    break;
+                case 2:
+                    weekViewGroup.setVisibility(View.GONE);
+                    monthViewGroup.setVisibility(View.VISIBLE);
+                    break;
+                default:
+                    weekViewGroup.setVisibility(View.GONE);
+                    monthViewGroup.setVisibility(View.GONE);
+                    break;
+            }
+
+        }
+
+        @Override
+        public void onNothingSelected(AdapterView<?> adapterView) {
 
         }
     }

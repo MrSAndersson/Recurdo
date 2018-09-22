@@ -24,10 +24,36 @@
             android:textSize="25sp" />
 
         <LinearLayout
+            android:id="@+id/new_item_category_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/new_item_name"
+            android:layout_margin="10dp">
+
+
+            <TextView
+                android:id="@+id/nwe_item_category_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textSize="18sp"
+                android:text="@string/new_item_category_text"/>
+
+            <Spinner
+                android:id="@+id/new_item_category"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center" />
+
+        </LinearLayout>
+
+        <LinearLayout
             android:id="@+id/new_item_recur_group"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/new_item_name"
+            android:layout_marginStart="10dp"
+            app:layout_constraintTop_toBottomOf="@id/new_item_category_group"
             android:orientation="horizontal">
 
             <TextView
@@ -61,7 +87,8 @@
             android:id="@+id/new_item_week_view_group"
             app:layout_constraintTop_toBottomOf="@+id/new_item_recur_group"
             android:orientation="vertical"
-            android:layout_marginTop="15dp">
+            android:layout_marginTop="15dp"
+            android:layout_marginStart="10dp">
 
             <TextView
                 android:layout_width="match_parent"
@@ -121,6 +148,7 @@
             android:orientation="horizontal"
             app:layout_constraintTop_toBottomOf="@id/new_item_recur_group"
             android:layout_marginTop="20dp"
+            android:layout_marginStart="10dp"
             android:visibility="gone">
 
             <TextView

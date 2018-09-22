@@ -6,12 +6,14 @@ import java.util.Optional;
 
 interface IItem {
     void setName(String name);
+    void setCategory(Integer category);
     void setInterval(Integer interval);
     void setRecurScale(Integer recurScale);
     void setWeekdays(boolean[] weekdays);
     void setDayOfMonth(Integer dayOfMonth);
 
     String getName();
+    Integer getCategory();
     Integer getInterval();
     Integer getRecurScale();
     boolean[] getWeekdays();
@@ -49,15 +51,42 @@ class ItemsSingleton {
 
 
 class Item implements IItem{
+
     private String name;
+    private Integer category;
     private Integer interval;
     private Integer recurScale;
     private boolean[] weekdays;
     private Integer dayOfMonth;
 
+    public static final Integer DAYLY = 1;
+    public static final Integer WEEKLY = 2;
+    public static final Integer MONTHLY = 3;
+
+    public static final Integer EXERCISE = 1;
+    public static final Integer FOOD = 2;
+    public static final Integer HYGIENE = 3;
+    public static final Integer RESTING = 4;
+    public static final Integer HOBBY = 5;
+    public static final Integer LIFE = 6;
+
+    public static final Integer MONDAY = 0;
+    public static final Integer TUESDAY = 1;
+    public static final Integer WEDNESDAY = 2;
+    public static final Integer THURSDAY = 3;
+    public static final Integer FRIDAY = 4;
+    public static final Integer SATURDAY = 5;
+    public static final Integer SUNDAY = 6;
+
+
+
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public void setCategory(Integer category) {
+        this.category = category;
     }
 
     public void setInterval(Integer interval) {
@@ -78,6 +107,10 @@ class Item implements IItem{
 
     public String getName() {
         return name;
+    }
+
+    public Integer getCategory() {
+        return category;
     }
 
     public Integer getInterval() {

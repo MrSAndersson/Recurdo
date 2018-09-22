@@ -6,6 +6,7 @@
     <!-- New Item Strings -->
     <string name="title_activity_new_item">New Task</string>
     <string name="new_item_name">Name</string>
+    <string name="new_item_category_text">Category</string>
     <string name="new_item_recur">Recur every </string>
     <string name="new_item_week_recur_on">On</string>
     <string name="new_item_create">Create</string>
@@ -22,6 +23,16 @@
         <item>days</item>
         <item>weeks</item>
         <item>months</item>
+    </string-array>
+
+    <string-array name="new_item_categories">
+        <item>Exercise</item>
+        <item>Food</item>
+        <item>Hygiene</item>
+        <item>Resting</item>
+        <item>Studies</item>
+        <item>Hobby</item>
+        <item>Life</item>
     </string-array>
 
     <!-- General -->
