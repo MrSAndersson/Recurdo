@@ -48,7 +48,7 @@
 
             <Spinner
                 android:id="@+id/new_item_interval_scale"
-                android:layout_width="100dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"/>
 
@@ -58,7 +58,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/new_item_week_selector_group"
+            android:id="@+id/new_item_week_view_group"
             app:layout_constraintTop_toBottomOf="@+id/new_item_recur_group"
             android:orientation="vertical"
             android:layout_marginTop="15dp">
@@ -115,7 +115,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/new_item_month_selector_group"
+            android:id="@+id/new_item_month_view_group"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"

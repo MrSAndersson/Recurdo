@@ -5,11 +5,17 @@ import java.util.List;
 import java.util.Optional;
 
 interface IItem {
-    void addItem(String name, List<Integer> weekdays);
+    void setName(String name);
+    void setInterval(Integer interval);
+    void setRecurScale(Integer recurScale);
+    void setWeekdays(boolean[] weekdays);
+    void setDayOfMonth(Integer dayOfMonth);
+
     String getName();
     Integer getInterval();
-    boolean matchDay(Integer day);
-    void setWeekdays(List<Integer> weekdays);
+    Integer getRecurScale();
+    boolean[] getWeekdays();
+    Integer getDayOfMonth();
 }
 
 
@@ -44,12 +50,30 @@ class ItemsSingleton {
 
 class Item implements IItem{
     private String name;
-    private List<Integer> weekdays;
     private Integer interval;
+    private Integer recurScale;
+    private boolean[] weekdays;
+    private Integer dayOfMonth;
 
-    public void addItem(String name, List<Integer> weekdays) {
+
+    public void setName(String name) {
         this.name = name;
+    }
+
+    public void setInterval(Integer interval) {
+        this.interval = interval;
+    }
+
+    public void setRecurScale(Integer recurScale) {
+        this.recurScale = recurScale;
+    }
+
+    public void setWeekdays(boolean[] weekdays) {
         this.weekdays = weekdays;
+    }
+
+    public void setDayOfMonth(Integer dayOfMonth) {
+        this.dayOfMonth = dayOfMonth;
     }
 
     public String getName() {
@@ -60,13 +84,18 @@ class Item implements IItem{
         return interval;
     }
 
-    public boolean matchDay(Integer day) {
-        return weekdays.contains(day);
+    public Integer getRecurScale() {
+        return recurScale;
     }
 
-    public void setWeekdays(List<Integer> weekdays) {
-        this.weekdays = weekdays;
+    public boolean[] getWeekdays() {
+        return weekdays;
     }
+
+    public Integer getDayOfMonth() {
+        return dayOfMonth;
+    }
+
 
 }
 
