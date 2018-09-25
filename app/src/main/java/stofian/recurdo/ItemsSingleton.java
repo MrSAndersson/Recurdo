@@ -8,14 +8,14 @@ interface IItem {
     void setName(String name);
     void setCategory(Integer category);
     void setInterval(Integer interval);
-    void setRecurScale(Integer recurScale);
+    void setIntervalScale(Integer recurScale);
     void setWeekdays(boolean[] weekdays);
     void setDayOfMonth(Integer dayOfMonth);
 
     String getName();
     Integer getCategory();
     Integer getInterval();
-    Integer getRecurScale();
+    Integer getIntervalScale();
     boolean[] getWeekdays();
     Integer getDayOfMonth();
 }
@@ -38,7 +38,7 @@ class ItemsSingleton {
         this.items.add(newItem);
     }
 
-    private Optional<IItem> findItem(String name) {
+    Optional<IItem> findItem(String name) {
 
         for (int x=0 ; x<items.size() ; x++) {
             if ( items.get(x).getName().equals(name) ) {
@@ -69,6 +69,7 @@ class Item implements IItem{
     public static final Integer RESTING = 4;
     public static final Integer HOBBY = 5;
     public static final Integer LIFE = 6;
+    public static final Integer STUDIES =7;
 
     public static final Integer MONDAY = 0;
     public static final Integer TUESDAY = 1;
@@ -93,7 +94,7 @@ class Item implements IItem{
         this.interval = interval;
     }
 
-    public void setRecurScale(Integer recurScale) {
+    public void setIntervalScale(Integer recurScale) {
         this.recurScale = recurScale;
     }
 
@@ -117,7 +118,7 @@ class Item implements IItem{
         return interval;
     }
 
-    public Integer getRecurScale() {
+    public Integer getIntervalScale() {
         return recurScale;
     }
 

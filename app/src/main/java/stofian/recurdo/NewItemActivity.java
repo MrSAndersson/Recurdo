@@ -2,6 +2,7 @@ package stofian.recurdo;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
@@ -13,7 +14,6 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.RadioButton;
 import android.widget.Spinner;
 
 
@@ -23,15 +23,15 @@ public class NewItemActivity extends AppCompatActivity {
     EditText intervalEditText;
     Spinner scaleSpinner;
     LinearLayout weekViewGroup;
-    CheckBox mondayButton;
-    CheckBox tuesdayButton;
-    CheckBox wednesdayButton;
-    CheckBox thursdayButton;
-    CheckBox fridayButton;
-    CheckBox saturdayButton;
-    CheckBox sundayButton;
+    CheckBox mondayCheckbox;
+    CheckBox tuesdayCheckbox;
+    CheckBox wednesdayCheckbox;
+    CheckBox thursdayCheckbox;
+    CheckBox fridayCheckbox;
+    CheckBox saturdayCheckbox;
+    CheckBox sundayCheckbox;
     LinearLayout monthViewGroup;
-    EditText dayOfMonthButton;
+    EditText dayOfMonthEditText;
     Button createButton;
 
 
@@ -51,15 +51,15 @@ public class NewItemActivity extends AppCompatActivity {
         intervalEditText= findViewById(R.id.new_item_interval);
         scaleSpinner = findViewById(R.id.new_item_interval_scale);
         weekViewGroup = findViewById(R.id.new_item_week_view_group);
-        mondayButton = findViewById(R.id.new_item_monday);
-        tuesdayButton = findViewById(R.id.new_item_tuesday);
-        wednesdayButton = findViewById(R.id.new_item_wednesday);
-        thursdayButton = findViewById(R.id.new_item_thursday);
-        fridayButton = findViewById(R.id.new_item_friday);
-        saturdayButton = findViewById(R.id.new_item_saturday);
-        sundayButton = findViewById(R.id.new_item_sunday);
+        mondayCheckbox = findViewById(R.id.new_item_monday);
+        tuesdayCheckbox = findViewById(R.id.new_item_tuesday);
+        wednesdayCheckbox = findViewById(R.id.new_item_wednesday);
+        thursdayCheckbox = findViewById(R.id.new_item_thursday);
+        fridayCheckbox = findViewById(R.id.new_item_friday);
+        saturdayCheckbox = findViewById(R.id.new_item_saturday);
+        sundayCheckbox = findViewById(R.id.new_item_sunday);
         monthViewGroup = findViewById(R.id.new_item_month_view_group);
-        dayOfMonthButton = findViewById(R.id.new_item_day_of_month);
+        dayOfMonthEditText = findViewById(R.id.new_item_day_of_month);
         createButton = findViewById(R.id.new_item_create_button);
 
 
@@ -67,7 +67,7 @@ public class NewItemActivity extends AppCompatActivity {
         intervalEditText.addTextChangedListener(new IntervalChangeWatcher(this));
         weekViewGroup.setVisibility(View.GONE);
         monthViewGroup.setVisibility(View.GONE);
-        dayOfMonthButton.setText("1");
+        dayOfMonthEditText.setText("1");
 
         ArrayAdapter<CharSequence> categorySpinnerAdapter = ArrayAdapter.createFromResource(this,
                 R.array.new_item_categories, android.R.layout.simple_spinner_item);
@@ -81,8 +81,7 @@ public class NewItemActivity extends AppCompatActivity {
 
         scaleSpinner.setOnItemSelectedListener(new OnScaleSwitchListener());
 
-
-
+        createButton.setOnClickListener(new CreateButtonListener());
 
     }
 
@@ -156,6 +155,136 @@ public class NewItemActivity extends AppCompatActivity {
         @Override
         public void onNothingSelected(AdapterView<?> adapterView) {
 
+        }
+    }
+
+    private class CreateButtonListener implements View.OnClickListener {
+
+        @Override
+        public void onClick(View view)
+        {
+            Item newItem = new Item();
+
+            boolean incorrectData = false;
+
+            String categoryString = categorySpinner.getSelectedItem().toString();
+            Integer category = 0;
+
+            switch (categoryString)
+            {
+                case "Exercise":
+                    category = Item.EXERCISE;
+                    break;
+                case "Food":
+                    category = Item.FOOD;
+                    break;
+                case "Hygiene":
+                    category = Item.HYGIENE;
+                    break;
+                case "Resting":
+                    category = Item.RESTING;
+                    break;
+                case "Studies":
+                    category = Item.STUDIES;
+                    break;
+                case "Hobby":
+                    category = Item.HOBBY;
+                    break;
+                case "Life":
+                    category = Item.LIFE;
+                    break;
+                default:
+                    Snackbar.make(view, "Category '" + categoryString +"' is invalid", Snackbar.LENGTH_LONG).show();
+                    incorrectData = true;
+                    break;
+            }
+
+            newItem.setCategory(category);
+
+            String itemName = nameEditText.getText().toString();
+            if (ItemsSingleton.getInstance().findItem(itemName).isPresent())
+            {
+                Snackbar.make(view, "Item with name '" + itemName + "' already exists", Snackbar.LENGTH_LONG).show();
+                incorrectData = true;
+            }
+            newItem.setName(itemName);
+
+            String intervalString = intervalEditText.getText().toString();
+
+            if (!intervalString.equals("") && Integer.parseInt(intervalString) > 0) {
+                newItem.setInterval(Integer.parseInt(intervalEditText.getText().toString()));
+            } else
+            {
+                Snackbar.make(view, "Invalid interval!", Snackbar.LENGTH_LONG).show();
+                incorrectData = true;
+            }
+
+            String intervalScaleString = scaleSpinner.getSelectedItem().toString();
+            Integer intervalScale = 0;
+
+            switch (intervalScaleString)
+            {
+                case "day":
+                case "days":
+                    intervalScale = Item.DAYLY;
+                    break;
+                case "week":
+                case "weeks":
+                    intervalScale = Item.WEEKLY;
+                    break;
+                case "month":
+                case "monthly":
+                    intervalScale = Item.MONTHLY;
+                    break;
+                default:
+                    Snackbar.make(view, "Interval '" + categoryString +"' is invalid", Snackbar.LENGTH_LONG).show();
+                    incorrectData = true;
+                    break;
+            }
+            newItem.setIntervalScale(intervalScale);
+
+            boolean[] weekdays = new boolean[7];
+
+            weekdays[Item.MONDAY] = mondayCheckbox.isChecked();
+            weekdays[Item.TUESDAY] = tuesdayCheckbox.isChecked();
+            weekdays[Item.WEDNESDAY] = wednesdayCheckbox.isChecked();
+            weekdays[Item.THURSDAY] = thursdayCheckbox.isChecked();
+            weekdays[Item.FRIDAY] = fridayCheckbox.isChecked();
+            weekdays[Item.SATURDAY] = saturdayCheckbox.isChecked();
+            weekdays[Item.SUNDAY] = sundayCheckbox.isChecked();
+
+            if ( intervalScale.equals(Item.WEEKLY) && !(
+                    weekdays[Item.MONDAY]
+                            || weekdays[Item.TUESDAY]
+                            || weekdays[Item.WEDNESDAY]
+                            || weekdays[Item.THURSDAY]
+                            || weekdays[Item.FRIDAY]
+                            || weekdays[Item.SATURDAY]
+                            || weekdays[Item.FRIDAY])
+                    )
+            {
+                Snackbar.make(view, "Select at least one weekday", Snackbar.LENGTH_LONG).show();
+                incorrectData = true;
+            }
+
+            newItem.setWeekdays(weekdays);
+
+            if (intervalScale.equals(Item.MONTHLY))
+            {
+                String dayOfTheMonthString = dayOfMonthEditText.getText().toString();
+                if (!dayOfTheMonthString.equals("") && Integer.parseInt(dayOfTheMonthString) > 0) {
+                    newItem.setDayOfMonth(Integer.parseInt(dayOfMonthEditText.getText().toString()));
+                } else
+                {
+                    Snackbar.make(view, "Invalid day of Month to recur on!", Snackbar.LENGTH_LONG).show();
+                    incorrectData = true;
+                }
+            }
+
+            if (!incorrectData) {
+                ItemsSingleton.getInstance().addItem(newItem);
+                finish();
+            }
         }
     }
 
