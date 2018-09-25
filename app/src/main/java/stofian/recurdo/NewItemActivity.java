@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
@@ -22,13 +23,13 @@ public class NewItemActivity extends AppCompatActivity {
     EditText intervalEditText;
     Spinner scaleSpinner;
     LinearLayout weekViewGroup;
-    RadioButton mondayButton;
-    RadioButton tuesdayButton;
-    RadioButton wednesdayButton;
-    RadioButton thursdayButton;
-    RadioButton fridayButton;
-    RadioButton saturdayButton;
-    RadioButton sundayButton;
+    CheckBox mondayButton;
+    CheckBox tuesdayButton;
+    CheckBox wednesdayButton;
+    CheckBox thursdayButton;
+    CheckBox fridayButton;
+    CheckBox saturdayButton;
+    CheckBox sundayButton;
     LinearLayout monthViewGroup;
     EditText dayOfMonthButton;
     Button createButton;
@@ -79,6 +80,8 @@ public class NewItemActivity extends AppCompatActivity {
         scaleSpinner.setAdapter(scaleSpinnerAdapter);
 
         scaleSpinner.setOnItemSelectedListener(new OnScaleSwitchListener());
+
+
 
 
     }
