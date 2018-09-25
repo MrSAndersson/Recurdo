@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-interface IItem {
+interface IGoal {
     void setName(String name);
     void setCategory(Integer category);
     void setInterval(Integer interval);
@@ -21,28 +21,28 @@ interface IItem {
 }
 
 
-class ItemsSingleton {
-    private static ItemsSingleton itemsInstance;
-    private List<IItem> items = new ArrayList<>();
+class GoalSingleton {
+    private static GoalSingleton goalsInstance;
+    private List<IGoal> goals = new ArrayList<>();
 
 
-    static synchronized ItemsSingleton getInstance() {
+    static synchronized GoalSingleton getInstance() {
 
-        if (itemsInstance == null) {
-            itemsInstance = new ItemsSingleton();
+        if (goalsInstance == null) {
+            goalsInstance = new GoalSingleton();
         }
-        return itemsInstance;
+        return goalsInstance;
     }
 
-    public void addItem(IItem newItem) {
-        this.items.add(newItem);
+    public void addGoal(IGoal newGoal) {
+        this.goals.add(newGoal);
     }
 
-    Optional<IItem> findItem(String name) {
+    Optional<IGoal> findGoal(String name) {
 
-        for (int x=0 ; x<items.size() ; x++) {
-            if ( items.get(x).getName().equals(name) ) {
-                return Optional.of(items.get(x));
+        for (int x = 0; x< goals.size() ; x++) {
+            if ( goals.get(x).getName().equals(name) ) {
+                return Optional.of(goals.get(x));
             }
         }
         return Optional.empty();
@@ -50,7 +50,7 @@ class ItemsSingleton {
 }
 
 
-class Item implements IItem{
+class Goal implements IGoal {
 
     private String name;
     private Integer category;

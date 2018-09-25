@@ -12,7 +12,7 @@ import android.view.MenuItem;
 import stofian.recurdo.dummy.DummyContent;
 
 public class MainActivity extends AppCompatActivity implements ItemFragment.OnListFragmentInteractionListener {
-    ItemsSingleton items = ItemsSingleton.getInstance();
+    GoalSingleton goals = GoalSingleton.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity implements ItemFragment.OnLi
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getBaseContext(), NewItemActivity.class);
+                Intent intent = new Intent(getBaseContext(), NewGoalActivity.class);
                 startActivity(intent);
             }
         });
