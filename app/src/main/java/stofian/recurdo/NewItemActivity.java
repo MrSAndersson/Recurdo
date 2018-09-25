@@ -98,7 +98,7 @@ public class NewItemActivity extends AppCompatActivity {
         @Override
         public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
-            if (i2 != 0) {
+            if (charSequence.length() != 0) {
 
 
                 Integer interval = Integer.parseInt(charSequence.toString());
