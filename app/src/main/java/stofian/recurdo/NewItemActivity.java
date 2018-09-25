@@ -104,6 +104,7 @@ public class NewItemActivity extends AppCompatActivity {
 
 
                 Integer interval = Integer.parseInt(charSequence.toString());
+                Integer currentSelectedItem = scaleSpinner.getSelectedItemPosition();
 
                 if (interval > 1) {
                     ArrayAdapter<CharSequence> scaleSpinnerAdapter = ArrayAdapter.createFromResource(context,
@@ -116,6 +117,7 @@ public class NewItemActivity extends AppCompatActivity {
                     scaleSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     scaleSpinner.setAdapter(scaleSpinnerAdapter);
                 }
+                scaleSpinner.setSelection(currentSelectedItem);
             }
         }
 
