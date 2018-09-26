@@ -11,11 +11,8 @@ import android.view.MenuItem;
 
 import stofian.recurdo.dummy.DummyContent;
 
-interface IUpdatedGoalData {
-    void UpdatedGoalData();
-}
 
-public class MainActivity extends AppCompatActivity implements goalListFragment.OnListFragmentInteractionListener, IUpdatedGoalData{
+public class MainActivity extends AppCompatActivity implements goalListFragment.OnListFragmentInteractionListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,11 +56,6 @@ public class MainActivity extends AppCompatActivity implements goalListFragment.
 
     @Override
     public void onListFragmentInteraction(DummyContent.DummyItem item) {
-
-    }
-
-    @Override
-    public void UpdatedGoalData() {
 
     }
 }
