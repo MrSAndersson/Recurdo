@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import stofian.recurdo.ItemFragment.OnListFragmentInteractionListener;
+import stofian.recurdo.goalListFragment.OnListFragmentInteractionListener;
 import stofian.recurdo.dummy.DummyContent.DummyItem;
 
 import java.util.List;

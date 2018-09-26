@@ -42,7 +42,7 @@
 
     <fragment
         android:id="@+id/fragment"
-        android:name="stofian.recurdo.ItemFragment"
+        android:name="stofian.recurdo.goalListFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         />

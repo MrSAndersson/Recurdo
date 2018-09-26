@@ -15,7 +15,7 @@ interface IUpdatedGoalData {
     void UpdatedGoalData();
 }
 
-public class MainActivity extends AppCompatActivity implements ItemFragment.OnListFragmentInteractionListener, IUpdatedGoalData{
+public class MainActivity extends AppCompatActivity implements goalListFragment.OnListFragmentInteractionListener, IUpdatedGoalData{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
