@@ -228,7 +228,7 @@ public class NewGoalActivity extends AppCompatActivity {
             {
                 case "day":
                 case "days":
-                    intervalScale = Goal.DAYLY;
+                    intervalScale = Goal.DAILY;
                     break;
                 case "week":
                 case "weeks":

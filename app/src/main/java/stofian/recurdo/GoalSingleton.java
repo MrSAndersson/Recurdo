@@ -59,25 +59,25 @@ class Goal implements IGoal {
     private boolean[] weekdays;
     private Integer dayOfMonth;
 
-    public static final Integer DAYLY = 1;
-    public static final Integer WEEKLY = 2;
-    public static final Integer MONTHLY = 3;
+    static final Integer DAILY = 1;
+    static final Integer WEEKLY = 2;
+    static final Integer MONTHLY = 3;
 
-    public static final Integer EXERCISE = 1;
-    public static final Integer FOOD = 2;
-    public static final Integer HYGIENE = 3;
-    public static final Integer RESTING = 4;
-    public static final Integer HOBBY = 5;
-    public static final Integer LIFE = 6;
-    public static final Integer STUDIES =7;
+    static final Integer EXERCISE = 1;
+    static final Integer FOOD = 2;
+    static final Integer HYGIENE = 3;
+    static final Integer RESTING = 4;
+    static final Integer HOBBY = 5;
+    static final Integer LIFE = 6;
+    static final Integer STUDIES =7;
 
-    public static final Integer MONDAY = 0;
-    public static final Integer TUESDAY = 1;
-    public static final Integer WEDNESDAY = 2;
-    public static final Integer THURSDAY = 3;
-    public static final Integer FRIDAY = 4;
-    public static final Integer SATURDAY = 5;
-    public static final Integer SUNDAY = 6;
+    static final Integer MONDAY = 0;
+    static final Integer TUESDAY = 1;
+    static final Integer WEDNESDAY = 2;
+    static final Integer THURSDAY = 3;
+    static final Integer FRIDAY = 4;
+    static final Integer SATURDAY = 5;
+    static final Integer SUNDAY = 6;
 
 
 
